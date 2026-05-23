@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  run-python-app:
+  test:
     runs-on: ubuntu-latest
 
     steps:
@@ -18,5 +18,8 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Run Python file
-        run: python app.py
+      - name: Install pytest
+        run: pip install pytest
+
+      - name: Run tests
+        run: pytest
