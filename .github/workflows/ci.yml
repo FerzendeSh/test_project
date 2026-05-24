@@ -1,9 +1,8 @@
-name: First CI Pipeline
+name: CI
 
 on:
   push:
-    branches:
-      - main
+  pull_request:
 
 jobs:
   test:
@@ -21,5 +20,11 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      - name: Check formatting with black
+        run: black --check .
+
+      - name: Lint with Ruff
+        run: ruff check .
+
       - name: Run tests
-        run: pytest
+        run: python -m pytest
